@@ -3,59 +3,1196 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ABird — Financial diagnostics for founders</title>
-  <meta name="description" content="ABird helps Australian founders see the gap between what their reports say and what their bank account is doing." />
+  <title>ABird | Financial diagnostics for founder-run businesses</title>
+  <meta name="description" content="ABird diagnoses the gap between what your reports say and what your bank account is doing." />
+  <meta name="theme-color" content="#F2F5E6" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --pearl:#303030;--ink:#1A1A1A;--indigo:#6419DA;--indigo-deep:#4A12A8;
-      --cyan:#66E8F8;--electro:#DCF665;--opal:#F2F5E6;--opal-warm:#ECEFE0;
-      --lavender:#B88BFF;--lavender-soft:#E7DBFF;
+    :root {
+      --pearl: #303030;
+      --ink: #1A1A1A;
+      --indigo: #6419DA;
+      --electro: #DCF665;
+      --opal: #F2F5E6;
+      --lavender: #B88BFF;
+      --line: rgba(48,48,48,.14);
+      --line-dark: rgba(242,245,230,.15);
     }
-    *{box-sizing:border-box} html,body{margin:0;background:var(--opal);color:var(--pearl);font-family:'Darker Grotesque',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
-    h1,h2,h3,p{margin:0} a{text-decoration:none;color:inherit}
-    .container{width:min(1200px,calc(100% - 48px));margin:0 auto}.section{padding:clamp(80px,10vw,140px) 0}
-    .logo{display:inline-flex;align-items:center;gap:10px;font-size:34px;font-weight:800;line-height:1;letter-spacing:-.03em}.logo svg{flex:0 0 auto}
-    .nav{position:sticky;top:0;z-index:50;background:rgba(242,245,230,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(48,48,48,.1)}
-    .nav-inner{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:22px}
-    .cta{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:18px 28px;border-radius:4px;font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;transition:transform .16s ease,background .16s ease;background:var(--indigo);color:var(--opal)}
-    .cta:hover{transform:translateY(-1px);background:var(--indigo-deep)}.cta.electro{background:var(--electro);color:var(--pearl)}
-    .eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--indigo);font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;margin-bottom:26px}.eyebrow:before{content:"";width:28px;height:1px;background:currentColor;opacity:.5}.eyebrow.dark{color:var(--electro)}
-    .hero{position:relative;overflow:hidden;padding:clamp(64px,8vw,116px) 0 clamp(72px,9vw,128px);background:var(--opal)}.hero:before{content:"";position:absolute;inset:-20% -20% auto auto;width:76%;height:90%;background:radial-gradient(ellipse at center,rgba(102,232,248,.18) 0%,rgba(242,234,255,.32) 36%,transparent 68%)}
-    .hero-grid{position:relative;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:clamp(42px,6vw,86px)}.hero h1{font-size:clamp(48px,6.2vw,92px);line-height:.94;letter-spacing:-.04em;font-weight:900;margin-bottom:30px}.hero h1 span,.section h2 span{color:var(--indigo)}
-    .hero-body{max-width:530px;font-size:clamp(19px,1.7vw,23px);line-height:1.42;opacity:.82;margin-bottom:32px}.hero-visual svg{width:100%;max-width:590px;display:block;margin:0 auto}
-    .reality,.birdie,.score{background:var(--opal-warm)}.section h2{font-size:clamp(38px,4.8vw,66px);line-height:.98;letter-spacing:-.035em;font-weight:900;margin-bottom:28px}
-    .strips{margin-top:54px;border-top:1px solid rgba(48,48,48,.14)}.strip{display:grid;grid-template-columns:58px 1fr;gap:20px;padding:26px 0;border-bottom:1px solid rgba(48,48,48,.14)}.strip b{color:var(--indigo);letter-spacing:.12em}.strip p{font-size:clamp(22px,2.1vw,30px);line-height:1.18;font-weight:600}
-    .split{display:grid;grid-template-columns:.95fr 1.05fr;align-items:center;gap:clamp(44px,6vw,86px)}.under p,.final p{font-size:19px;line-height:1.5;opacity:.82;max-width:520px;margin-bottom:18px}.under-visual svg{width:100%;max-width:540px;display:block;margin:0 auto}
-    .birdie{text-align:center}.birdie-inner{max-width:760px}.birdie-visual{position:relative;width:min(430px,90vw);aspect-ratio:1;margin:0 auto 38px;display:grid;place-items:center}.rings{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(102,232,248,.12),transparent 58%),repeating-radial-gradient(circle,rgba(48,48,48,.11) 0 1px,transparent 1px 48px)}.birdie-visual svg{position:relative}.birdie p{max-width:560px;margin:0 auto 34px;font-size:19px;line-height:1.52;opacity:.82}
-    .lang-grid,.facts,.pattern-grid{display:grid;grid-template-columns:repeat(3,1fr)}.lang-grid{gap:22px;margin-top:42px}.card{min-height:310px;padding:34px;display:flex;flex-direction:column}.card.indigo{background:var(--indigo);color:var(--opal)}.card.electro{background:var(--electro)}.card.dark{background:var(--pearl);color:var(--opal)}.card div{display:flex;justify-content:space-between;font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;opacity:.74;margin-bottom:32px}.card h3{font-size:34px;line-height:1;margin-bottom:16px}.card p{font-size:17px;line-height:1.45;opacity:.82;margin-top:auto}
-    .intro{max-width:650px;font-size:19px;line-height:1.5;opacity:.82;margin-bottom:42px}.facts{border:1px solid rgba(48,48,48,.13);margin-bottom:34px}.fact{padding:34px;border-right:1px solid rgba(48,48,48,.13)}.fact:last-child{border-right:0}.fact strong{display:block;font-size:clamp(64px,7vw,94px);line-height:.8;color:var(--indigo);letter-spacing:-.05em}.fact span{display:block;margin:14px 0 10px;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.fact p,.promises p{font-size:16px;line-height:1.4;opacity:.78}.promises{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:34px}.promises p{border-left:3px solid var(--indigo);padding-left:18px}
-    .patterns{background:var(--pearl);color:var(--opal)}.patterns h2 span{color:var(--electro)}.pattern-grid{border:1px solid rgba(242,245,230,.13);margin-top:44px}.pattern{min-height:238px;padding:32px;border-right:1px solid rgba(242,245,230,.13);border-bottom:1px solid rgba(242,245,230,.13)}.pattern:nth-child(3n){border-right:0}.pattern:nth-child(n+7){border-bottom:0}.pattern strong{display:block;font-size:36px;color:var(--electro);line-height:1;margin-bottom:18px}.pattern h3{font-size:25px;line-height:1.05;margin-bottom:14px}.pattern p{font-size:16px;line-height:1.42;opacity:.72}.pattern-footer{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:44px}.pattern-footer p{max-width:510px;font-size:17px;line-height:1.45;opacity:.74}
-    .final{background:var(--lavender-soft)}.final-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}.footer{background:var(--pearl);color:var(--opal);padding:72px 0 42px}.footer-tagline{margin-top:20px;font-size:22px;font-weight:700}.compliance{max-width:880px;margin:42px 0;padding-left:18px;border-left:3px solid var(--indigo);font-size:14px;line-height:1.58;opacity:.6}.footer-bottom{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-top:22px;border-top:1px solid rgba(242,245,230,.14);font-size:13px;opacity:.55}
-    @media(max-width:900px){.nav .cta{display:none}.nav-inner{min-height:66px}.hero{padding-top:44px}.hero-grid,.split,.final-grid{grid-template-columns:1fr;gap:34px}.hero h1{font-size:clamp(48px,13vw,68px);margin-bottom:24px}.hero-body{font-size:19px;margin-bottom:26px}.hero .cta{width:100%;padding:18px 20px}.section{padding:78px 0}.container{width:min(100% - 34px,1200px)}.section h2{font-size:clamp(38px,11vw,54px)}.strip{grid-template-columns:44px 1fr}.strip p{font-size:22px}.lang-grid,.facts,.promises,.pattern-grid{grid-template-columns:1fr}.fact,.pattern{border-right:0!important}.fact:not(:last-child){border-bottom:1px solid rgba(48,48,48,.13)}.pattern:not(:last-child){border-bottom:1px solid rgba(242,245,230,.13)}.pattern-footer{align-items:stretch;flex-direction:column}.pattern-footer .cta,.final .cta{width:100%}.under-visual svg{max-width:390px}.hero-visual{margin-top:8px}.hero-visual svg{max-width:390px}}
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--opal);
+      color: var(--pearl);
+      font-family: "Darker Grotesque", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    body, button, input, textarea { font-family: "Darker Grotesque", system-ui, sans-serif; }
+    h1, h2, h3, p, blockquote { margin: 0; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: clamp(78px, 9vw, 132px) 0;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(242,245,230,.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav__inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 26px;
+    }
+
+    .wordmark {
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -.035em;
+      color: var(--ink);
+    }
+
+    .nav__links {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 13px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .nav__links a { opacity: .64; }
+    .nav__links a:hover { opacity: 1; }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      min-height: 54px;
+      padding: 17px 26px;
+      border-radius: 4px;
+      background: var(--indigo);
+      color: var(--opal);
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: transform .16s ease, opacity .16s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-1px);
+      opacity: .92;
+    }
+
+    .cta--electro {
+      background: var(--electro);
+      color: var(--ink);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 26px;
+      color: var(--indigo);
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: currentColor;
+      opacity: .55;
+    }
+
+    .eyebrow--dark {
+      color: var(--electro);
+    }
+
+    .headline {
+      font-size: clamp(42px, 5.6vw, 82px);
+      line-height: .96;
+      letter-spacing: -.046em;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .headline span {
+      color: var(--indigo);
+    }
+
+    .body {
+      font-size: clamp(18px, 1.72vw, 22px);
+      line-height: 1.48;
+      color: rgba(48,48,48,.76);
+      max-width: 650px;
+    }
+
+    .body + .body {
+      margin-top: 18px;
+    }
+
+    .micro {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 1.3;
+      font-weight: 900;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: rgba(48,48,48,.62);
+    }
+
+    /* Bird mark, used only in hero, Little Birdie, and footer. */
+    .bird-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(64px, 8vw, 116px) 0 clamp(70px, 8vw, 116px);
+      background:
+        radial-gradient(ellipse at 78% 34%, rgba(184,139,255,.18), transparent 46%),
+        var(--opal);
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+      gap: clamp(42px, 6vw, 86px);
+      align-items: center;
+    }
+
+    .hero .headline {
+      margin-bottom: 28px;
+      max-width: 760px;
+    }
+
+    .hero .body {
+      margin-bottom: 32px;
+    }
+
+    .hero__trust {
+      margin-top: 20px;
+      max-width: 620px;
+      color: rgba(48,48,48,.66);
+      font-size: 18px;
+      line-height: 1.36;
+      font-weight: 600;
+    }
+
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      min-height: 420px;
+    }
+
+    .hero-visual svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-visual__label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(48,48,48,.58);
+    }
+
+    .little-birdie {
+      background:
+        linear-gradient(180deg, rgba(184,139,255,.18), rgba(184,139,255,0) 34%),
+        var(--opal);
+      border-top: 1px solid var(--line);
+    }
+
+    .little-birdie__grid {
+      display: grid;
+      grid-template-columns: minmax(300px, .75fr) minmax(0, 1.25fr);
+      gap: clamp(42px, 6vw, 90px);
+      align-items: center;
+    }
+
+    .little-birdie__visual {
+      position: relative;
+      min-height: 340px;
+      display: grid;
+      place-items: center;
+    }
+
+    .little-birdie__visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: repeating-radial-gradient(circle, rgba(48,48,48,.12) 0 1px, transparent 1px 46px);
+      opacity: .5;
+    }
+
+    .little-birdie__visual svg {
+      position: relative;
+      width: min(190px, 48vw);
+    }
+
+    .little-birdie .headline {
+      margin-bottom: 26px;
+    }
+
+    .recognition {
+      background: var(--pearl);
+      color: var(--opal);
+    }
+
+    .recognition .headline {
+      color: var(--opal);
+      max-width: 900px;
+      margin-bottom: 24px;
+    }
+
+    .recognition .headline span {
+      color: var(--electro);
+    }
+
+    .recognition .body {
+      color: rgba(242,245,230,.72);
+      margin-bottom: 52px;
+    }
+
+    .recognition-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border: 1px solid var(--line-dark);
+    }
+
+    .recognition-card {
+      min-height: 310px;
+      padding: clamp(28px, 3vw, 42px);
+      border-right: 1px solid var(--line-dark);
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .recognition-card:nth-child(2n) { border-right: 0; }
+    .recognition-card:nth-child(n+3) { border-bottom: 0; }
+
+    .recognition-card b {
+      display: block;
+      color: var(--electro);
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 900;
+      margin-bottom: 28px;
+    }
+
+    .recognition-card h3 {
+      font-size: clamp(28px, 3vw, 38px);
+      line-height: 1;
+      letter-spacing: -.034em;
+      font-weight: 900;
+      color: var(--opal);
+      margin-bottom: 18px;
+    }
+
+    .recognition-card p {
+      color: rgba(242,245,230,.68);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .languages {
+      background: var(--opal);
+    }
+
+    .languages__quote {
+      margin: 42px 0;
+      padding: clamp(28px, 4vw, 46px);
+      border-top: 2px solid var(--pearl);
+      border-bottom: 2px solid var(--pearl);
+      color: var(--ink);
+      font-size: clamp(36px, 5vw, 74px);
+      line-height: .96;
+      letter-spacing: -.045em;
+      font-weight: 900;
+    }
+
+    .language-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 44px;
+      border: 1px solid var(--line);
+    }
+
+    .language-card {
+      min-height: 360px;
+      padding: clamp(28px, 3vw, 42px);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      background: rgba(242,245,230,.5);
+    }
+
+    .language-card:last-child { border-right: 0; }
+
+    .language-card__top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 32px;
+      color: var(--indigo);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .language-card h3 {
+      font-size: clamp(32px, 3vw, 40px);
+      line-height: 1;
+      letter-spacing: -.035em;
+      color: var(--ink);
+      margin-bottom: 18px;
+      font-weight: 900;
+    }
+
+    .language-card p {
+      margin-top: auto;
+      color: rgba(48,48,48,.76);
+      font-size: 18px;
+      line-height: 1.42;
+    }
+
+    .language-close {
+      margin-top: 36px;
+      padding-left: 18px;
+      border-left: 3px solid var(--indigo);
+      color: rgba(48,48,48,.76);
+      font-size: 20px;
+      line-height: 1.4;
+      max-width: 800px;
+    }
+
+    .score {
+      background: rgba(184,139,255,.22);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .score .headline {
+      margin-bottom: 24px;
+    }
+
+    .score .body {
+      margin-bottom: 42px;
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line);
+      margin: 38px 0 36px;
+      background: rgba(242,245,230,.35);
+    }
+
+    .stat {
+      padding: clamp(28px, 4vw, 46px);
+      border-right: 1px solid var(--line);
+    }
+
+    .stat:last-child { border-right: 0; }
+
+    .stat strong {
+      display: block;
+      color: var(--indigo);
+      font-size: clamp(58px, 7vw, 92px);
+      line-height: .84;
+      letter-spacing: -.06em;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .aside {
+      margin-top: 28px;
+      max-width: 720px;
+      color: rgba(48,48,48,.72);
+      font-size: 19px;
+      line-height: 1.43;
+    }
+
+    .patterns {
+      background: var(--pearl);
+      color: var(--opal);
+    }
+
+    .patterns .headline {
+      color: var(--opal);
+      max-width: 940px;
+      margin-bottom: 24px;
+    }
+
+    .patterns .headline span {
+      color: var(--electro);
+    }
+
+    .patterns .body {
+      color: rgba(242,245,230,.7);
+      margin-bottom: 48px;
+    }
+
+    .pattern-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line-dark);
+    }
+
+    .pattern-card {
+      min-height: 250px;
+      padding: clamp(28px, 3vw, 40px);
+      border-right: 1px solid var(--line-dark);
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .pattern-card:nth-child(3n) { border-right: 0; }
+    .pattern-card:nth-child(n+7) { border-bottom: 0; }
+
+    .pattern-card b {
+      display: block;
+      color: var(--electro);
+      font-size: 38px;
+      line-height: 1;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .pattern-card h3 {
+      color: var(--opal);
+      font-size: 25px;
+      line-height: 1.06;
+      letter-spacing: -.025em;
+      margin-bottom: 14px;
+    }
+
+    .pattern-card p {
+      color: rgba(242,245,230,.66);
+      font-size: 17px;
+      line-height: 1.42;
+    }
+
+    .patterns__close {
+      margin-top: 34px;
+      color: rgba(242,245,230,.75);
+      font-size: 20px;
+      line-height: 1.4;
+      max-width: 760px;
+    }
+
+    .observations {
+      background: var(--opal);
+    }
+
+    .observations .headline {
+      margin-bottom: 24px;
+    }
+
+    .observation-list {
+      margin-top: 50px;
+      border-top: 1px solid var(--line);
+    }
+
+    .observation {
+      display: grid;
+      grid-template-columns: 82px minmax(0, 1fr);
+      gap: 24px;
+      padding: clamp(28px, 3.5vw, 44px) 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .observation b {
+      color: var(--indigo);
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      line-height: 1;
+    }
+
+    .observation h3 {
+      color: var(--ink);
+      font-size: clamp(28px, 3vw, 38px);
+      line-height: 1;
+      letter-spacing: -.035em;
+      margin-bottom: 14px;
+      font-weight: 900;
+    }
+
+    .observation p {
+      color: rgba(48,48,48,.74);
+      font-size: 19px;
+      line-height: 1.42;
+      max-width: 900px;
+    }
+
+    .second-opinion {
+      background: var(--pearl);
+      color: var(--opal);
+    }
+
+    .second-opinion .headline {
+      color: var(--opal);
+      margin-bottom: 30px;
+      max-width: 940px;
+    }
+
+    .second-opinion .headline span {
+      color: var(--electro);
+    }
+
+    .second-opinion .body {
+      color: rgba(242,245,230,.7);
+      max-width: 860px;
+    }
+
+    .opinion-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 48px;
+      border: 1px solid var(--line-dark);
+    }
+
+    .opinion {
+      padding: clamp(28px, 3vw, 40px);
+      border-right: 1px solid var(--line-dark);
+    }
+
+    .opinion:last-child { border-right: 0; }
+
+    .opinion h3 {
+      color: var(--electro);
+      font-size: 28px;
+      line-height: 1;
+      margin-bottom: 12px;
+      font-weight: 900;
+    }
+
+    .opinion p {
+      color: rgba(242,245,230,.68);
+      font-size: 18px;
+      line-height: 1.4;
+    }
+
+    .fit {
+      background: rgba(184,139,255,.18);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fit__grid {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: clamp(44px, 6vw, 86px);
+      align-items: start;
+    }
+
+    .fit .headline {
+      margin-bottom: 26px;
+    }
+
+    .fit .body {
+      max-width: 780px;
+    }
+
+    .path {
+      background: var(--opal);
+    }
+
+    .path .headline {
+      margin-bottom: 24px;
+    }
+
+    .step-list {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--line);
+    }
+
+    .step {
+      min-height: 300px;
+      padding: clamp(26px, 3vw, 38px);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      background: rgba(242,245,230,.5);
+    }
+
+    .step:last-child { border-right: 0; }
+
+    .step b {
+      color: var(--indigo);
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      margin-bottom: 28px;
+    }
+
+    .step h3 {
+      color: var(--ink);
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -.03em;
+      margin-bottom: 14px;
+      font-weight: 900;
+    }
+
+    .step p {
+      margin-top: auto;
+      color: rgba(48,48,48,.74);
+      font-size: 17px;
+      line-height: 1.38;
+    }
+
+    .path-close {
+      margin-top: 34px;
+      color: rgba(48,48,48,.75);
+      font-size: 20px;
+      line-height: 1.4;
+      max-width: 760px;
+    }
+
+    .final {
+      background: var(--opal);
+      padding-bottom: clamp(84px, 10vw, 140px);
+    }
+
+    .final__box {
+      padding: clamp(38px, 6vw, 74px);
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at 88% 30%, rgba(184,139,255,.28), transparent 45%),
+        var(--opal);
+    }
+
+    .final .headline {
+      max-width: 930px;
+      margin-bottom: 28px;
+    }
+
+    .pull {
+      margin: 40px 0 34px;
+      padding: clamp(26px, 4vw, 42px);
+      border-top: 2px solid var(--pearl);
+      border-bottom: 2px solid var(--pearl);
+      color: var(--ink);
+      font-size: clamp(28px, 3.8vw, 54px);
+      line-height: 1.02;
+      letter-spacing: -.035em;
+      font-weight: 900;
+      max-width: 980px;
+    }
+
+    .final-line {
+      margin-top: 24px;
+      color: rgba(48,48,48,.7);
+      font-size: 19px;
+      line-height: 1.42;
+      max-width: 780px;
+    }
+
+    .footer {
+      background: var(--pearl);
+      color: var(--opal);
+      padding: 70px 0 44px;
+    }
+
+    .footer__top {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: clamp(36px, 6vw, 90px);
+      align-items: start;
+      margin-bottom: 44px;
+    }
+
+    .footer__logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      color: var(--opal);
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -.035em;
+    }
+
+    .footer__logo svg {
+      width: 44px;
+      height: 44px;
+    }
+
+    .footer__tagline {
+      font-size: clamp(26px, 3vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+      font-weight: 900;
+      max-width: 440px;
+    }
+
+    .footer__nav {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 40px;
+      color: rgba(242,245,230,.76);
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .footer__compliance {
+      max-width: 960px;
+      padding-left: 18px;
+      border-left: 3px solid var(--indigo);
+      color: rgba(242,245,230,.62);
+      font-size: 14px;
+      line-height: 1.55;
+      margin-bottom: 34px;
+    }
+
+    .footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line-dark);
+      color: rgba(242,245,230,.5);
+      font-size: 13px;
+    }
+
+    @media (max-width: 940px) {
+      .container { width: min(100% - 32px, 1180px); }
+      .section { padding: 66px 0; }
+      .nav__inner { min-height: 64px; }
+      .nav__links, .nav .cta { display: none; }
+      .wordmark { font-size: 32px; }
+
+      .hero {
+        padding: 42px 0 58px;
+      }
+
+      .hero__grid,
+      .little-birdie__grid,
+      .fit__grid,
+      .footer__top {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        max-width: 355px;
+        min-height: 320px;
+      }
+
+      .headline,
+      .hero .headline {
+        font-size: clamp(40px, 10.8vw, 56px);
+        line-height: .98;
+      }
+
+      .body,
+      .hero .body {
+        font-size: 18px;
+        line-height: 1.43;
+      }
+
+      .hero .cta,
+      .score .cta,
+      .second-opinion .cta,
+      .final .cta {
+        width: 100%;
+      }
+
+      .little-birdie__visual {
+        min-height: 260px;
+      }
+
+      .recognition-grid,
+      .language-grid,
+      .stat-strip,
+      .opinion-strip,
+      .step-list,
+      .pattern-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .recognition-card,
+      .language-card,
+      .stat,
+      .opinion,
+      .step,
+      .pattern-card {
+        border-right: 0 !important;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .pattern-card,
+      .recognition-card {
+        border-bottom-color: var(--line-dark);
+      }
+
+      .recognition-card:last-child,
+      .language-card:last-child,
+      .stat:last-child,
+      .opinion:last-child,
+      .step:last-child,
+      .pattern-card:last-child {
+        border-bottom: 0;
+      }
+
+      .recognition-card {
+        min-height: auto;
+      }
+
+      .language-card,
+      .step {
+        min-height: 250px;
+      }
+
+      .observation {
+        grid-template-columns: 48px 1fr;
+        gap: 16px;
+      }
+
+      .footer {
+        padding-bottom: 84px;
+      }
+
+      .footer__nav {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .headline,
+      .hero .headline {
+        font-size: clamp(39px, 10.5vw, 52px);
+      }
+
+      .hero-visual {
+        max-width: 330px;
+      }
+
+      .pull {
+        font-size: clamp(28px, 8.2vw, 40px);
+      }
+    }
   </style>
 </head>
+
 <body>
-  <nav class="nav"><div class="container nav-inner"><div class="logo"><svg width="38" height="38" viewBox="0 0 120 96" fill="none"><circle cx="58" cy="46" r="28" stroke="#303030" stroke-width="7"/><circle cx="70" cy="36" r="4.5" fill="#303030"/><path d="M86 43L108 35L98 53Z" fill="#303030"/><path d="M34 43C20 42 12 37 7 29M34 51C20 55 12 61 6 70M34 47C19 49 10 49 3 47M49 74V88M68 74V88M39 90H56M60 90H78" stroke="#303030" stroke-width="6" stroke-linecap="round"/></svg><span>Abird</span></div><a class="cta" href="https://score.abird.com.au">Find your cash pressure pattern ↗</a></div></nav>
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="#hero" class="wordmark" aria-label="ABird home">ABird</a>
+      <div class="nav__links" aria-label="Primary navigation">
+        <a href="#birdie-score">Birdie Score</a>
+        <a href="#nine-patterns">Nine patterns</a>
+        <a href="#second-opinion">Second opinion</a>
+      </div>
+      <a class="cta" href="https://score.abird.com.au">Find your cash pressure pattern ↗</a>
+    </div>
+  </nav>
 
-  <section class="hero"><div class="container hero-grid"><div><div class="eyebrow">Financial diagnostics for founders</div><h1>Profitable on paper.<br>Stressed in the <span>bank account</span>.<br>There’s a <span>reason</span>.</h1><p class="hero-body">The reports tell you what was recorded. The bank tells you what survived. The gap between them is where the diagnosis starts.</p><a class="cta" href="https://score.abird.com.au">Find your cash pressure pattern ↗</a></div><div class="hero-visual"><svg viewBox="0 0 640 520"><defs><radialGradient id="rings" cx="50%" cy="38%" r="55%"><stop offset="0%" stop-color="#66E8F8" stop-opacity="0.18"/><stop offset="100%" stop-color="#F2F5E6" stop-opacity="0"/></radialGradient></defs><circle cx="382" cy="166" r="210" fill="url(#rings)"/><circle cx="382" cy="166" r="80" fill="none" stroke="#66E8F8" stroke-opacity=".22"/><circle cx="382" cy="166" r="126" fill="none" stroke="#66E8F8" stroke-opacity=".22"/><circle cx="382" cy="166" r="172" fill="none" stroke="#66E8F8" stroke-opacity=".22"/><circle cx="382" cy="166" r="218" fill="none" stroke="#66E8F8" stroke-opacity=".22"/><line x1="78" y1="230" x2="594" y2="230" stroke="#66E8F8" stroke-width="4" stroke-linecap="round"/><path d="M104 250C135 266 166 266 197 250C228 234 259 234 290 250" stroke="#66E8F8" stroke-width="2" opacity=".48" fill="none"/><g transform="translate(286 76) scale(1.4)"><circle cx="58" cy="46" r="28" stroke="#303030" stroke-width="7" fill="none"/><circle cx="70" cy="36" r="4.5" fill="#303030"/><path d="M86 43L108 35L98 53Z" fill="#303030"/><path d="M34 43C20 42 12 37 7 29M34 51C20 55 12 61 6 70M34 47C19 49 10 49 3 47M49 74V88M68 74V88M39 90H56M60 90H78" stroke="#303030" stroke-width="6" stroke-linecap="round"/></g><g font-family="Darker Grotesque" font-weight="900" font-size="16" fill="#303030" opacity=".65"><line x1="150" y1="262" x2="150" y2="388" stroke="#66E8F8" stroke-width="2" stroke-dasharray="5 8"/><text x="150" y="420" text-anchor="middle">ATO</text><line x1="255" y1="250" x2="255" y2="418" stroke="#66E8F8" stroke-width="2" stroke-dasharray="5 8"/><text x="255" y="450" text-anchor="middle">GST</text><line x1="365" y1="246" x2="365" y2="364" stroke="#66E8F8" stroke-width="2" stroke-dasharray="5 8"/><text x="365" y="396" text-anchor="middle">PAYROLL</text><line x1="475" y1="258" x2="475" y2="410" stroke="#66E8F8" stroke-width="2" stroke-dasharray="5 8"/><text x="475" y="442" text-anchor="middle">LOANS</text></g></svg></div></div></section>
+  <main>
+    <section class="hero" id="hero">
+      <div class="container hero__grid">
+        <div>
+          <div class="eyebrow">Financial diagnostics for founders</div>
+          <h1 class="headline">Profitable on paper.<br>Stressed in the <span>bank account</span>.<br>There’s a <span>reason</span>.</h1>
+          <p class="body">The reports tell you what was recorded. The bank tells you what survived. The gap between them is where the diagnosis starts.</p>
+          <a class="cta" href="https://score.abird.com.au">Find your cash pressure pattern ↗</a>
+          <p class="micro">11 questions. Five minutes. No financial data required.</p>
+          <p class="hero__trust">For Australian founders running businesses between $500K and $10M. You don’t need to switch accountants. You just need an honest second opinion.</p>
+        </div>
 
-  <section class="section reality"><div class="container"><div class="eyebrow">If this sounds familiar</div><h2>If this sounds familiar,<br>you’re not <span>imagining</span> it.</h2><div class="strips"><div class="strip"><b>01</b><p>The report says the month was good. The bank says otherwise.</p></div><div class="strip"><b>02</b><p>Someone asks what your real margin is and you can feel yourself guessing.</p></div><div class="strip"><b>03</b><p>Money is moving between accounts and you’ve stopped tracking why.</p></div><div class="strip"><b>04</b><p>Payroll runs. Suppliers get paid. The ATO is building up. You’re not.</p></div></div></div></section>
+        <div class="hero-visual" aria-label="The ABird bird standing on a waterline, watching hidden financial pressure underneath">
+          <svg viewBox="0 0 600 440" role="img">
+            <circle cx="350" cy="142" r="172" fill="none" stroke="#6419DA" stroke-opacity=".12"/>
+            <circle cx="350" cy="142" r="124" fill="none" stroke="#6419DA" stroke-opacity=".12"/>
+            <circle cx="350" cy="142" r="76" fill="none" stroke="#6419DA" stroke-opacity=".12"/>
+            <line x1="50" y1="220" x2="552" y2="220" stroke="#6419DA" stroke-width="3"/>
+            <path d="M92 238C122 252 152 252 182 238C212 224 242 224 272 238" stroke="#B88BFF" stroke-width="2" fill="none" opacity=".55"/>
+            <g transform="translate(260 72) scale(1.28)">
+              <circle cx="58" cy="46" r="28" stroke="#303030" stroke-width="7" fill="none"/>
+              <circle cx="70" cy="36" r="4.5" fill="#303030"/>
+              <path d="M86 43L108 35L98 53Z" fill="#303030"/>
+              <path d="M34 43C20 42 12 37 7 29M34 51C20 55 12 61 6 70M34 47C19 49 10 49 3 47M49 74V88M68 74V88M39 90H56M60 90H78" stroke="#303030" stroke-width="6" stroke-linecap="round"/>
+            </g>
+            <g font-family="Darker Grotesque, sans-serif" font-size="15" font-weight="900" letter-spacing="1.8" fill="#303030" opacity=".64">
+              <line x1="134" y1="245" x2="134" y2="342" stroke="#6419DA" stroke-dasharray="5 8" stroke-width="2" opacity=".5"/>
+              <text x="134" y="374" text-anchor="middle">ATO</text>
+              <line x1="254" y1="238" x2="254" y2="368" stroke="#6419DA" stroke-dasharray="5 8" stroke-width="2" opacity=".5"/>
+              <text x="254" y="400" text-anchor="middle">GST</text>
+              <line x1="374" y1="236" x2="374" y2="332" stroke="#6419DA" stroke-dasharray="5 8" stroke-width="2" opacity=".5"/>
+              <text x="374" y="364" text-anchor="middle">PAYROLL</text>
+              <line x1="488" y1="246" x2="488" y2="350" stroke="#6419DA" stroke-dasharray="5 8" stroke-width="2" opacity=".5"/>
+              <text x="488" y="382" text-anchor="middle">LOANS</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
 
-  <section class="section under"><div class="container split"><div><div class="eyebrow">What we diagnose</div><h2>The report shows the <span>surface</span>.<br>The bank carries what sits <span>underneath</span>.</h2><p>Reported profit can look clean while cash is being pulled down by payroll, ATO, GST, suppliers, rent, super, and loans.</p><p>The pressure is not always visible in the report. But it is always visible in the bank.</p><a class="cta" href="https://score.abird.com.au">Find your cash pressure pattern ↗</a></div><div class="under-visual"><svg viewBox="0 0 560 620"><rect x="165" y="36" width="180" height="40" rx="2" fill="none" stroke="#303030" stroke-width="2"/><text x="255" y="62" text-anchor="middle" font-family="Darker Grotesque" font-weight="900" font-size="17" letter-spacing="2" fill="#303030">REPORTED PROFIT</text><text x="255" y="112" text-anchor="middle" font-family="Darker Grotesque" font-weight="900" font-size="44" fill="#303030">$</text><rect x="234" y="128" width="42" height="12" fill="#DCF665"/><line x1="0" y1="146" x2="560" y2="146" stroke="#66E8F8" stroke-width="4"/><path d="M202 146C156 185 126 250 116 330C103 432 154 522 244 582C285 608 320 598 334 554C351 498 388 459 406 390C430 297 395 204 328 146Z" fill="#1A1A1A" opacity=".94"/></svg></div></div></section>
+    <section class="section little-birdie" id="little-birdie">
+      <div class="container little-birdie__grid">
+        <div class="little-birdie__visual" aria-label="The Little Birdie mark">
+          <svg class="bird-svg" viewBox="0 0 120 96" fill="none" aria-hidden="true">
+            <circle cx="58" cy="46" r="28" stroke="#303030" stroke-width="7"/>
+            <circle cx="70" cy="36" r="4.5" fill="#303030"/>
+            <path d="M86 43L108 35L98 53Z" fill="#303030"/>
+            <path d="M34 43C20 42 12 37 7 29M34 51C20 55 12 61 6 70M34 47C19 49 10 49 3 47M49 74V88M68 74V88M39 90H56M60 90H78" stroke="#303030" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="eyebrow">The Little Birdie</div>
+          <h2 class="headline">The little birdie sees what <span>you can’t</span>.</h2>
+          <p class="body">It watches the gap between your reports and your bank account, and it sings out when something’s off.</p>
+          <p class="body">Most founders feel that something is off long before they can name it. The cash feels tight on a month that looked good on paper. The ATO obligation lands harder than expected. A supplier asks to be paid early and you have to think twice.</p>
+          <p class="body">That feeling has a name. It’s the gap between three different things you’re being told about your own business at the same time, and only one of them is the truth. The Birdie Score is how the little birdie talks to you.</p>
+        </div>
+      </div>
+    </section>
 
-  <section class="section birdie"><div class="container birdie-inner"><div class="birdie-visual"><div class="rings"></div><svg width="190" height="190" viewBox="0 0 120 96" fill="none"><circle cx="58" cy="46" r="28" stroke="#303030" stroke-width="7"/><circle cx="70" cy="36" r="4.5" fill="#303030"/><path d="M86 43L108 35L98 53Z" fill="#303030"/><path d="M34 43C20 42 12 37 7 29M34 51C20 55 12 61 6 70M34 47C19 49 10 49 3 47M49 74V88M68 74V88M39 90H56M60 90H78" stroke="#303030" stroke-width="6" stroke-linecap="round"/></svg></div><div class="eyebrow">The role we play</div><h2>The little birdie sees<br>what <span>you can’t</span>.</h2><p>It watches the gap between your reports and your bank account. It catches the patterns before they catch you. Quiet, accurate, and on your side.</p><a class="cta" href="https://score.abird.com.au">Find your cash pressure pattern ↗</a></div></section>
+    <section class="section recognition" id="recognition">
+      <div class="container">
+        <div class="eyebrow eyebrow--dark">Recognition</div>
+        <h2 class="headline">If any of this sounds familiar, you’re not <span>imagining</span> it.</h2>
+        <p class="body">These are the moments we see every week, in founder-run businesses that look profitable from the outside.</p>
 
-  <section class="section lang"><div class="container"><div class="eyebrow">Three languages. One truth.</div><h2>Most founders are<br>reading the <span>wrong one</span>.</h2><div class="lang-grid"><article class="card indigo"><div><span>01</span><span>Finance</span></div><h3>The story.</h3><p>What your business is supposed to do. The plan. The forecast. The future you’re aiming at.</p></article><article class="card electro"><div><span>02</span><span>Accounting</span></div><h3>The record.</h3><p>What already happened, organised for compliance. Tidy, official, and always slightly behind.</p></article><article class="card dark"><div><span>03</span><span>Cash</span></div><h3>The truth.</h3><p>What actually moved through the bank. When it arrived. When it left. What’s left for you.</p></article></div></div></section>
+        <div class="recognition-grid">
+          <article class="recognition-card"><b>01</b><h3>The report says the month was good. The bank says otherwise.</h3><p>Revenue is up. Margins look acceptable. The balance won’t sit still in your head. You’re reading two different numbers and only one of them is real.</p></article>
+          <article class="recognition-card"><b>02</b><h3>Someone asks what your real margin is and you can feel yourself guessing.</h3><p>You know the rough shape of the answer. You don’t know the actual number. The gap between knowing and really knowing has been widening for a while.</p></article>
+          <article class="recognition-card"><b>03</b><h3>Money is moving between accounts and you’ve stopped tracking why.</h3><p>A transfer here. A personal card there. A loan to the business that nobody wrote down. The business and the founder have become tangled up financially in ways no report shows.</p></article>
+          <article class="recognition-card"><b>04</b><h3>Payroll runs. Suppliers get paid. The ATO is building up. You’re not.</h3><p>You’re working the hardest. You’re paid the last. The maths you think you’re doing isn’t the maths that’s actually happening.</p></article>
+        </div>
+      </div>
+    </section>
 
-  <section class="section score"><div class="container"><div class="eyebrow">The Birdie Score</div><h2>A five-minute look at<br>your <span>cash pressure</span>.</h2><p class="intro">Eleven questions about how your business actually runs. We map your answers to the nine patterns that put cash under pressure and show which ones are active right now.</p><div class="facts"><div class="fact"><strong>11</strong><span>Questions</span><p>Designed around founder-run businesses.</p></div><div class="fact"><strong>5</strong><span>Minutes</span><p>Less time than your last bank login.</p></div><div class="fact"><strong>0</strong><span>Financial data</span><p>No statements. No logins. No uploads.</p></div></div><div class="promises"><p><strong>No sales call triggered.</strong> You get the Score, then decide what you do with it.</p><p><strong>Your results are yours.</strong> Private to you. No tricks behind the form.</p></div><a class="cta" href="https://score.abird.com.au">Take the Birdie Score ↗</a></div></section>
+    <section class="section languages" id="three-languages">
+      <div class="container">
+        <div class="eyebrow">Three languages</div>
+        <h2 class="headline">Three languages. Most founders are reading the <span>wrong one</span>.</h2>
+        <blockquote class="languages__quote">Finance is the story. Accounting is the record. Cash is the truth.</blockquote>
+        <p class="body">Every founder is reading three financial languages at once. Nobody told you they were different. That’s not a literacy problem. It’s how the system is set up. You learn the differences the hard way, in the wrong order, when something stops adding up.</p>
 
-  <section class="section patterns"><div class="container"><div class="eyebrow dark">The nine patterns of cash stress</div><h2>Cash stress hides<br>in patterns.<br>We make them <span>visible</span>.</h2><div class="pattern-grid"><article class="pattern"><strong>01</strong><h3>Phantom Revenue</h3><p>Sales recognised on the P&L that haven’t landed in the bank.</p></article><article class="pattern"><strong>02</strong><h3>Cost Overhang</h3><p>A fixed cost base built for last year’s revenue.</p></article><article class="pattern"><strong>03</strong><h3>Structural Bleed</h3><p>Margin leaking through pricing, terms, or process losses.</p></article><article class="pattern"><strong>04</strong><h3>Decision Drift</h3><p>Material choices made on numbers behind reality.</p></article><article class="pattern"><strong>05</strong><h3>Silent Liability</h3><p>ATO, super, accrued leave, and obligations building quietly.</p></article><article class="pattern"><strong>06</strong><h3>Blind Position</h3><p>The bank balance is known, what’s committed is not.</p></article><article class="pattern"><strong>07</strong><h3>Growth Trap</h3><p>Top-line growth consuming more cash than it creates.</p></article><article class="pattern"><strong>08</strong><h3>Founder Extraction</h3><p>Drawings or loans drifting beyond what the business can fund.</p></article><article class="pattern"><strong>09</strong><h3>Capital Misalignment</h3><p>Funding structured against the wrong cash cycle.</p></article></div><div class="pattern-footer"><p>Most businesses have three or four of these running at once. The Birdie Score tells you which.</p><a class="cta electro" href="https://score.abird.com.au">Take the Birdie Score ↗</a></div></div></section>
+        <div class="language-grid">
+          <article class="language-card"><div class="language-card__top"><span>01</span><span>Finance</span></div><h3>The story.</h3><p>What your business is supposed to do. The plan. The forecast. The version of the future you tell investors, staff, and yourself at 11pm when sleep isn’t coming.</p></article>
+          <article class="language-card"><div class="language-card__top"><span>02</span><span>Accounting</span></div><h3>The record.</h3><p>What already happened, organised for compliance. Your P&amp;L. Your balance sheet. Your BAS. Accurate, but built for the ATO. Not for the decision you have to make on Thursday morning.</p></article>
+          <article class="language-card"><div class="language-card__top"><span>03</span><span>Cash</span></div><h3>The truth.</h3><p>What’s actually moving through the bank. When it arrives. When it leaves. What’s left to absorb a surprise. Cash doesn’t care about accrual rules. Cash moves when it moves.</p></article>
+        </div>
+        <p class="language-close">Most decisions get made in Finance, recorded in Accounting, and paid for in Cash. When those three languages disagree, the founder feels it long before the reports show it.</p>
+      </div>
+    </section>
 
-  <section class="section final"><div class="container final-grid"><div><div class="eyebrow">Your next move</div><h2>You already know<br>something isn’t <span>sitting right</span>.</h2></div><div><p>The question is whether the pressure is coming from revenue, costs, timing, obligations, structure, or founder extraction.</p><a class="cta" href="https://score.abird.com.au">Find your cash pressure pattern ↗</a></div></div></section>
+    <section class="section score" id="birdie-score">
+      <div class="container">
+        <div class="eyebrow">The Birdie Score</div>
+        <h2 class="headline">Start with the <span>Birdie Score</span>.</h2>
+        <p class="body">You can’t fix what you can’t name. The Birdie Score is an 11-question check on your business, built around the patterns we see every day in founder-run businesses between $500K and $10M in revenue.</p>
+        <p class="body">It takes about five minutes. It doesn’t ask for your financials. It asks what you already know, and what you’ve been quietly avoiding asking yourself. At the end, you get a clear read on which patterns are running in your business right now. Not a sales report. A real answer.</p>
 
-  <footer class="footer"><div class="container"><div class="logo"><svg width="38" height="38" viewBox="0 0 120 96" fill="none"><circle cx="58" cy="46" r="28" stroke="#F2F5E6" stroke-width="7"/><circle cx="70" cy="36" r="4.5" fill="#F2F5E6"/><path d="M86 43L108 35L98 53Z" fill="#F2F5E6"/><path d="M34 43C20 42 12 37 7 29M34 51C20 55 12 61 6 70M34 47C19 49 10 49 3 47M49 74V88M68 74V88M39 90H56M60 90H78" stroke="#F2F5E6" stroke-width="6" stroke-linecap="round"/></svg><span>Abird</span></div><p class="footer-tagline">Quiet diagnostics for loud businesses.</p><p class="compliance">ABird Pty Ltd provides financial diagnostics and reconstruction services. ABird does not provide personal financial advice. The Birdie Score is a self-assessment tool and is not a substitute for professional advice.</p><div class="footer-bottom"><span>© ABird Pty Ltd. Made in Australia.</span><span>Built for founders running $500K–$10M businesses.</span></div></div></footer>
+        <div class="stat-strip">
+          <div class="stat"><strong>5</strong><span>Minutes</span></div>
+          <div class="stat"><strong>11</strong><span>Questions</span></div>
+          <div class="stat"><strong>0</strong><span>Financials needed</span></div>
+        </div>
+
+        <a class="cta" href="https://score.abird.com.au">Find your cash pressure pattern ↗</a>
+        <p class="aside">Some founders take it and find out they’re in better shape than they feared. Others see, for the first time, the shape of the thing that’s been keeping them up at night. Either way, you can talk it through with us on the phone. No engagement. No obligation.</p>
+      </div>
+    </section>
+
+    <section class="section patterns" id="nine-patterns">
+      <div class="container">
+        <div class="eyebrow eyebrow--dark">Nine patterns</div>
+        <h2 class="headline">Nine patterns we see in <span>cash-stressed</span> businesses.</h2>
+        <p class="body">These aren’t theories. They’re the patterns the little birdie watches for, named, every week, in businesses that look profitable from the outside. Most have three or four running at once. The Birdie Score tells you which ones are yours.</p>
+
+        <div class="pattern-grid">
+          <article class="pattern-card"><b>01</b><h3>Phantom Revenue</h3><p>Money on the report that hasn’t arrived in the bank. Platform holdbacks, timing gaps, invoices waiting to clear.</p></article>
+          <article class="pattern-card"><b>02</b><h3>Cost Overhang</h3><p>Fixed costs that grew with the business and never got tested against the cash cycle. The monthly nut is higher than the founder thinks.</p></article>
+          <article class="pattern-card"><b>03</b><h3>Structural Bleed</h3><p>Cash leaking between entities, accounts, or platforms through transfers no one wrote down. One part of the business quietly funding another.</p></article>
+          <article class="pattern-card"><b>04</b><h3>Decision Drift</h3><p>Decisions made on gut feel because the data is too old, too unclear, or too painful to look at properly.</p></article>
+          <article class="pattern-card"><b>05</b><h3>Silent Liability</h3><p>Obligations stacking up in the background that standard reports don’t surface. PAYG. GST. Super accrued. Leave entitlements. Quiet, then loud.</p></article>
+          <article class="pattern-card"><b>06</b><h3>Blind Position</h3><p>You can’t answer basic questions about your own financial position with confidence. True margin. Cash runway. Break-even by service line.</p></article>
+          <article class="pattern-card"><b>07</b><h3>Growth Trap</h3><p>Revenue rising faster than the financial infrastructure beneath it can carry. Winning more work makes the cash problem worse, not better.</p></article>
+          <article class="pattern-card"><b>08</b><h3>Founder Extraction</h3><p>Personal and business cash flows have become tangled up. The founder is last in the queue.</p></article>
+          <article class="pattern-card"><b>09</b><h3>Capital Misalignment</h3><p>The wrong type of funding, at the wrong time, on the wrong terms. The capital structure doesn’t match how the business actually works.</p></article>
+        </div>
+        <p class="patterns__close">Most founders we work with have three or four of these running at once. None of them knew before they looked.</p>
+      </div>
+    </section>
+
+    <section class="section observations" id="what-we-see">
+      <div class="container">
+        <div class="eyebrow">What we see</div>
+        <h2 class="headline">What founders don’t realise they’re <span>carrying</span>.</h2>
+        <p class="body">After two decades sitting across the desk from founders, the same things go unsaid in nearly every conversation. The founder doesn’t know to ask. The accountant doesn’t know to volunteer it. The information sits there quietly, and it stays quiet until it stops being quiet.</p>
+
+        <div class="observation-list">
+          <div class="observation"><b>01</b><div><h3>The real cost of carrying your top staff.</h3><p>Founders know what they pay people. They don’t always know what those people actually cost. Super, workcover, leave accruals, the hidden cost of cover when they take time off, the cost of replacing them if they leave. The number is rarely the number on the offer letter.</p></div></div>
+          <div class="observation"><b>02</b><div><h3>Where the business is funding the founder, and where the founder is funding the business.</h3><p>Most founder-run businesses have money flowing both ways across the same line. A vehicle the business pays for. A loan that was never documented. A drawdown that became a habit. Division 7A in the background. Most founders don’t realise these are intertwined until someone draws the diagram.</p></div></div>
+          <div class="observation"><b>03</b><div><h3>The tax position you’ve already triggered but haven’t paid for yet.</h3><p>Sales already made. Stock already moved. Plant and equipment that depreciated faster than the book says. The tax outcome of the year is usually decided by August. Most founders only find out in May.</p></div></div>
+          <div class="observation"><b>04</b><div><h3>What your business is actually worth, separate from what it earns.</h3><p>Earnings and value aren’t the same number. The business with strong systems and a thin founder is worth more than the business with strong earnings and a founder who’s the system. Most founders don’t know which one they’ve built.</p></div></div>
+          <div class="observation"><b>05</b><div><h3>The deals you’ve signed that quietly compound against you.</h3><p>Personal guarantees on leases. Director loans on the wrong side of the balance sheet. Rolling supplier terms that tightened during a tough month and never loosened back. The contracts you signed years ago are still working, and not always in your favour.</p></div></div>
+          <div class="observation"><b>06</b><div><h3>The cost of decisions you’re making without seeing the full picture.</h3><p>Hiring on gut. Pricing on intuition. Discounting to win the deal. Carrying a customer who’s quietly losing you money. Each one is small. Each one is rational in isolation. Stacked together, they’re the difference between a business that compounds and a business that treads water.</p></div></div>
+        </div>
+
+        <p class="language-close">None of this is failure. It’s what happens when you’ve been running fast and nobody’s been pointed at the underneath. The Birdie Score is the first look. The phone call is where we tell you what we see.</p>
+      </div>
+    </section>
+
+    <section class="section second-opinion" id="second-opinion">
+      <div class="container">
+        <div class="eyebrow eyebrow--dark">Second opinion</div>
+        <h2 class="headline">Already have an accountant? Good. We’re not trying to <span>replace them</span>.</h2>
+        <p class="body">A lot of founders we talk to already have an accountant they trust. The accountant lodges the BAS. Runs the year-end. Does the job they were hired to do. The founder isn’t looking to fire anyone.</p>
+        <p class="body">What the founder is looking for is a second set of eyes. An honest answer to the question they’ve been sitting on for years and never quite put to their accountant, because it didn’t fit the engagement, or because they didn’t want to look silly, or because they suspected the answer would lead to a conversation neither of them wanted to start.</p>
+        <p class="body">That’s what we do.</p>
+        <p class="body">You take the Birdie Score. We read it. You get on the phone with us, no engagement, no contract, no commitment. We talk through what came up. The thing that’s been bothering you for years. The number that never quite adds up. The question you’ve been carrying.</p>
+
+        <div class="opinion-strip">
+          <div class="opinion"><h3>No engagement.</h3><p>A phone call. Not a contract.</p></div>
+          <div class="opinion"><h3>No obligation.</h3><p>Take what’s useful. Leave the rest.</p></div>
+          <div class="opinion"><h3>Independent.</h3><p>Your accountant keeps doing what they’re doing. We’re the second opinion you’ve never had.</p></div>
+        </div>
+
+        <p class="patterns__close">We don’t run a calendar full of free consultations. The Birdie Score is the filter that means the calls we do take are worth both sides of the table. By the time we talk, we both already know what we’re talking about.</p>
+      </div>
+    </section>
+
+    <section class="section fit" id="who-we-work-with">
+      <div class="container fit__grid">
+        <div>
+          <div class="eyebrow">Who we work with</div>
+          <h2 class="headline">Built for founders who <span>already know</span>.</h2>
+        </div>
+        <div>
+          <p class="body">Founder-run businesses between $500K and $10M in revenue. Profitable on paper. Cash-stressed in practice. Usually in construction, professional services, retail, healthcare, or e-commerce.</p>
+          <p class="body">Founders who built the thing themselves. Who are making serious decisions on data that wasn’t designed for serious decisions. Who already know something isn’t quite right, but haven’t had it named.</p>
+          <p class="body">The founders we work best with already have a finance team. They aren’t looking for help running the business. They’re looking for someone honest enough to point at the thing nobody else has pointed at.</p>
+          <p class="body">If that doesn’t sound like you, this isn’t for you. If it does, keep reading.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section path" id="path">
+      <div class="container">
+        <div class="eyebrow">After the score</div>
+        <h2 class="headline">The path after the <span>Birdie Score</span>.</h2>
+        <p class="body">The Birdie Score surfaces the patterns. From there, what we do depends on what it finds. We don’t sell packages. We work out what’s going on, we tell you straight, and the founder decides what happens next.</p>
+
+        <div class="step-list">
+          <div class="step"><b>01</b><h3>The Birdie Score.</h3><p>Five-minute self-assessment. Free. Shows you which of the nine patterns are running in your business right now.</p></div>
+          <div class="step"><b>02</b><h3>A phone call.</h3><p>No engagement. No obligation. Talk through what the Birdie Score surfaced with someone who reads these patterns every week.</p></div>
+          <div class="step"><b>03</b><h3>The Diagnostic.</h3><p>A proper read on your full financial position, the obligations underneath, and the cash cycle that pays for them.</p></div>
+          <div class="step"><b>04</b><h3>The Reconstruction.</h3><p>Where it’s needed, rebuilding the financial picture so you can read it yourself. Built for cash decisions, not just compliance.</p></div>
+        </div>
+
+        <p class="path-close">We don’t fix your business. We give you a clear read on it. What you do next is yours.</p>
+      </div>
+    </section>
+
+    <section class="section final" id="final-cta">
+      <div class="container">
+        <div class="final__box">
+          <div class="eyebrow">Your next move</div>
+          <h2 class="headline">You already know something isn’t <span>sitting right</span>.</h2>
+          <p class="body">Nothing is broken yet. But the room to absorb a single surprise has been getting smaller every month. The reports aren’t going to show it before it lands.</p>
+          <blockquote class="pull">Business is a bit like gardening. You need to plant the flowers, but you spend more time pulling out weeds so they can grow. Every founder plants. Almost nobody weeds. The Birdie Score shows you where the weeds are.</blockquote>
+          <a class="cta" href="https://score.abird.com.au">Find your cash pressure pattern ↗</a>
+          <p class="final-line">If you’re not sure whether this applies to you, that’s already the signal. And if you’re sure it does, you already know the next move.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="#hero" class="footer__logo" aria-label="ABird home">
+            <svg viewBox="0 0 120 96" fill="none" aria-hidden="true">
+              <circle cx="58" cy="46" r="28" stroke="#F2F5E6" stroke-width="7"/>
+              <circle cx="70" cy="36" r="4.5" fill="#F2F5E6"/>
+              <path d="M86 43L108 35L98 53Z" fill="#F2F5E6"/>
+              <path d="M34 43C20 42 12 37 7 29M34 51C20 55 12 61 6 70M34 47C19 49 10 49 3 47M49 74V88M68 74V88M39 90H56M60 90H78" stroke="#F2F5E6" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+            <span>ABird</span>
+          </a>
+          <p class="footer__tagline">Quiet diagnostics for loud businesses.</p>
+        </div>
+
+        <div class="footer__nav">
+          <a href="https://score.abird.com.au">Take the Birdie Score</a>
+          <a href="#nine-patterns">The nine patterns</a>
+          <a href="#little-birdie">About ABird</a>
+          <a href="#what-we-see">Insights</a>
+          <a href="mailto:hello@abird.com.au">Contact</a>
+        </div>
+      </div>
+
+      <p class="footer__compliance">ABird Pty Ltd provides financial diagnostics and reconstruction services. Tax agent services are provided separately by Pano Pongas, Registered Tax Practitioner 24728014, via PVP Advisory. ABird does not provide personal financial advice. The Birdie Score is a self-assessment tool and is not a substitute for professional advice.</p>
+
+      <div class="footer__bottom">
+        <span>© ABird Pty Ltd. Made in Australia.</span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
